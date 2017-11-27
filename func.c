@@ -122,3 +122,27 @@ void noFolha (No *arvore){
 	}
 
 } 
+
+int alturaArvore(No *arvore){
+
+	No* atual = arvore;
+
+	if(estaVazia(atual)) return 0; 
+
+
+	if(atual->dir == NULL && atual->esq == NULL)
+		return 0;
+
+	return maior(alturaArvore(atual->esq) , alturaArvore(atual->dir)) + 1;
+	
+
+}
+
+
+int maior(int a, int b){
+	return a > b? a : b;
+}
+
+void grau(No* Arvore){
+
+}

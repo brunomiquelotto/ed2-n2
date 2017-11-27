@@ -19,5 +19,9 @@ void emOrdem (No *arvore);
 void inserir (No **arvore, int IdInclusao);
 void pesquisar (No *arvore, int IdPesquisar);
 
-int ehRaiz(No *arvore);
-int nosRamo(No *arvore);
+void ehRaiz(No *arvore);
+void nosRamo(No *arvore);
+void noFolha(No *arvore);
+
+int alturaArvore(No *arvore);
+int maior(No *arvore);
