@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include "print.h"
 
-int printGrafo() {
+void printGrafo() {
     printf("\nPrinting Grafo to screen..............");
 }
 
-int printGrafoInfo() {
+void printGrafoInfo() {
     printf("\nPrinting Grafo info to screen..............");
 }
 
-int printTree() {
+void printTree() {
     printf("\nPrinting Tree to screen..............");
 }
 
-int printTreeInfo() {
+void printTreeInfo() {
     printf("\nPrinting Tree info to screen..............");
 }

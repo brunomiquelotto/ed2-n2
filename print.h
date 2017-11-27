@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-int printGrafo();
+void printGrafo();
 
-int printGrafoInfo();
+void printGrafoInfo();
 
-int printTree();
+void printTree();
 
-int printTreeInfo();
+void printTreeInfo();
