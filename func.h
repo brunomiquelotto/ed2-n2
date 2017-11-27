@@ -18,4 +18,5 @@ void emOrdem (No *arvore);
 
 void inserir (No **arvore, int IdInclusao);
 void pesquisar (No *arvore, int IdPesquisar);
+
 void ehRaiz(No *arvore);
