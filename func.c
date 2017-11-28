@@ -20,29 +20,19 @@ void inserir (No **arvore, int IdInclusao) {
 	novo->dir = NULL;
 
 
-	if (ehVazia(*arvore))
+	if (estaVazia(*arvore))
 		*arvore = novo;
-
-
 	else {        
 
 		atual = *arvore;
-
-
 		while (atual != NULL) {
-
 			pai = atual;
-
-
 			if (IdInclusao < atual->Id)
 				atual = atual->esq;   
 			else
 				atual = atual->dir;  
-
 		} 
 		novo->pai = pai;
-
-
 		if (IdInclusao < pai->Id)
 			pai->esq = novo;   
 		else
@@ -50,8 +40,7 @@ void inserir (No **arvore, int IdInclusao) {
 	} 
 } 
 
-int estaVazia (NoLista* lista) {
-
+int estaVazia (No* lista) {
 	return (lista == NULL);
 }
 
@@ -80,25 +69,19 @@ void emOrdem (No *arvore) {
 }
 
 int ehRaiz(No *arvore){
-
 	No* atual = arvore;
-
-	if(!ehVazia(atual) && atual->pai == NULL)
+	if(!estaVazia(atual) && atual->pai == NULL)
 		return atual->Id;
+	return 0;
 }
 
 void nosRamo (No *arvore){
-
 	No* atual = arvore;
-
 	if(estaVazia(atual)) return; 
-
 	while(atual != NULL) {
-
 		if(atual->pai != NULL && (atual->dir != NULL || atual->esq != NULL)){
 			printf("%d\n",  atual->Id);		
 		}
-
 		nosRamo(atual->esq);
 		nosRamo(atual->dir);
 	}
@@ -106,41 +89,30 @@ void nosRamo (No *arvore){
 } 
 
 void noFolha (No *arvore){
-
 	No* atual = arvore;
-
 	if(estaVazia(atual)) return; 
 
 	while(atual != NULL) {
-
 		if(atual->dir == NULL && atual->esq == NULL){
 			printf("%d\n",  atual->Id);		
 		}
-
 		noFolha(atual->esq);
 		noFolha(atual->dir);
 	}
-
 } 
 
 int alturaArvore(No *arvore){
-
 	No* atual = arvore;
-
 	if(estaVazia(atual)) return 0; 
-
 
 	if(atual->dir == NULL && atual->esq == NULL)
 		return 0;
-
-	return maior(alturaArvore(atual->esq) , alturaArvore(atual->dir)) + 1;
-	
-
+	return maior(alturaArvore(atual->esq), alturaArvore(atual->dir));
 }
 
 
-int maior(int a, int b){
-	return a > b? a : b;
+int maior(int a, int b) {
+	return a > b ? a : b;
 }
 
 void grau(No* Arvore){

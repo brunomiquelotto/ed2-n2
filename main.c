@@ -6,15 +6,13 @@
 
 
 int main() { 
-    //TODO: Alterar 
-    int arvore = 0;
-    int grafo = 0;
+    //TODO: Alterar
 
-    readTree('filename');
-    printTree()
+    getTreeFromFile("filename");
+    printTree();
     printTreeInfo();
 
-    readGrafo('filename');
+    getGrafoFromFile("filename");
     printGrafo();
     printGrafoInfo();
     return 0;

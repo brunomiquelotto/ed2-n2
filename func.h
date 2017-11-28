@@ -10,7 +10,7 @@ typedef struct _no {
 
 
 void inicializa (No **arvore);
-int ehVazia (No *arvore);
+int estaVazia (No *arvore);
 
 void preOrdem (No *arvore);
 void posOrdem (No *arvore);
@@ -19,11 +19,13 @@ void emOrdem (No *arvore);
 void inserir (No **arvore, int IdInclusao);
 void pesquisar (No *arvore, int IdPesquisar);
 
-void ehRaiz(No *arvore);
+int ehRaiz(No *arvore);
 void nosRamo(No *arvore);
 void noFolha(No *arvore);
 
 int alturaArvore(No *arvore);
-int maior(No *arvore);
+int maior(int a, int b);
 
 void grau(No *arvore);
+
+#endif
