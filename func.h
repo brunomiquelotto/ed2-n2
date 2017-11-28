@@ -26,6 +26,6 @@ void noFolha(No *arvore);
 int alturaArvore(No *arvore);
 int maior(int a, int b);
 
-void grau(No *arvore);
+int grau(No *arvore, int max);
 
 #endif

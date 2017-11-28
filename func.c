@@ -19,11 +19,9 @@ void inserir (No **arvore, int IdInclusao) {
 	novo->esq = NULL;
 	novo->dir = NULL;
 
-
 	if (estaVazia(*arvore))
 		*arvore = novo;
 	else {        
-
 		atual = *arvore;
 		while (atual != NULL) {
 			pai = atual;
@@ -115,6 +113,13 @@ int maior(int a, int b) {
 	return a > b ? a : b;
 }
 
-void grau(No* Arvore){
+int grau(No* arvore, int max) {
+	No* atual = arvore;
+	if (max == 2) return max;
+	if (estaVazia(atual)) return 0;
 
+	if (atual->esq == NULL && atual->dir == NULL) return max;
+	if (atual->esq != NULL && atual->dir != NULL) return 2;
+	if (atual->esq != NULL) return maior(grau(atual->esq, 1), max);
+	return maior(grau(atual->dir, 1), max);
 }
