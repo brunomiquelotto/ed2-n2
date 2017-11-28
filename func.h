@@ -24,8 +24,14 @@ void nosRamo(No *arvore);
 void noFolha(No *arvore);
 
 int alturaArvore(No *arvore);
-int maior(int a, int b);
+int profundidadeArvore(No *arvore);
+int grauArvore(No *arvore, int max);
 
-int grau(No *arvore, int max);
+int alturaNo(No *node);
+int profundidadeNo(No *node);
+int grauNo(No *node);
+int nivelNo(No *node);
+
+int maior(int a, int b);
 
 #endif

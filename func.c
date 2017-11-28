@@ -98,6 +98,9 @@ void noFolha (No *arvore){
 		noFolha(atual->dir);
 	}
 } 
+int maior(int a, int b) {
+	return a > b ? a : b;
+}
 
 int alturaArvore(No *arvore){
 	No* atual = arvore;
@@ -108,18 +111,37 @@ int alturaArvore(No *arvore){
 	return maior(alturaArvore(atual->esq), alturaArvore(atual->dir));
 }
 
-
-int maior(int a, int b) {
-	return a > b ? a : b;
+int profundidadeArvore(No *arvore) {
+	return alturaArvore(arvore);
 }
 
-int grau(No* arvore, int max) {
+int grauArvore(No* arvore, int max) {
 	No* atual = arvore;
 	if (max == 2) return max;
 	if (estaVazia(atual)) return 0;
-
 	if (atual->esq == NULL && atual->dir == NULL) return max;
 	if (atual->esq != NULL && atual->dir != NULL) return 2;
-	if (atual->esq != NULL) return maior(grau(atual->esq, 1), max);
-	return maior(grau(atual->dir, 1), max);
+	if (atual->esq != NULL) return maior(grauArvore(atual->esq, 1), max);
+	return maior(grauArvore(atual->dir, 1), max);
+}
+
+int alturaNo(No *node){
+	return 1;
+}
+
+int profundidadeNo(No *node){
+	return 1;
+}
+
+int grauNo(No *node){
+	No* atual = node;
+	if (atual->esq != NULL && atual->dir != NULL) return 2;
+	if (atual->esq != NULL || atual->dir != NULL) return 1;
+	return 0;
+}
+
+int nivelNo(No *node){
+	No* atual = node;
+	if (atual->pai) return nivelNo(atual) + 1;
+	return 1;
 }
