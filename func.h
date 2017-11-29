@@ -20,6 +20,7 @@ void inserir (No **arvore, int IdInclusao);
 void pesquisar (No *arvore, int IdPesquisar);
 
 int ehRaiz(No *arvore);
+void printRaiz(No *arvore);
 void nosRamo(No *arvore);
 void noFolha(No *arvore);
 

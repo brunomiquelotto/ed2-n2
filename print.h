@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include "func.h"
 
 void printGrafo();
 
 void printGrafoInfo();
 
-void printTree();
+void printTree(No* arvore);
 
-void printTreeInfo();
+void printTreeInfo(No* arvore);

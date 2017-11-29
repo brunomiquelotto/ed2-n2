@@ -7,10 +7,11 @@
 
 int main() { 
     //TODO: Alterar
-
-    getTreeFromFile("filename");
-    printTree();
-    printTreeInfo();
+    No* arvore;
+    getTreeFromFile("arvore.txt", &arvore);
+    printTree(arvore);
+    printf("\n");
+    printTreeInfo(arvore);
 
     getGrafoFromFile("filename");
     printGrafo();

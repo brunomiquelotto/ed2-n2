@@ -73,30 +73,31 @@ int ehRaiz(No *arvore){
 	return 0;
 }
 
+void printRaiz(No *arvore) {
+	if (!ehRaiz(arvore)) return;
+	printf("%d\n", arvore->Id);
+}
+
 void nosRamo (No *arvore){
 	No* atual = arvore;
 	if(estaVazia(atual)) return; 
-	while(atual != NULL) {
-		if(atual->pai != NULL && (atual->dir != NULL || atual->esq != NULL)){
-			printf("%d\n",  atual->Id);		
-		}
-		nosRamo(atual->esq);
-		nosRamo(atual->dir);
-	}
 
+	if(atual->pai != NULL && (atual->dir != NULL || atual->esq != NULL)){
+		printf("%d ",  atual->Id);		
+	}
+	nosRamo(atual->esq);
+	nosRamo(atual->dir);
 } 
 
 void noFolha (No *arvore){
 	No* atual = arvore;
 	if(estaVazia(atual)) return; 
 
-	while(atual != NULL) {
-		if(atual->dir == NULL && atual->esq == NULL){
-			printf("%d\n",  atual->Id);		
-		}
-		noFolha(atual->esq);
-		noFolha(atual->dir);
+	if(atual->dir == NULL && atual->esq == NULL){
+		printf("%d ",  atual->Id);		
 	}
+	noFolha(atual->esq);
+	noFolha(atual->dir);
 } 
 int maior(int a, int b) {
 	return a > b ? a : b;
@@ -106,9 +107,9 @@ int alturaArvore(No *arvore){
 	No* atual = arvore;
 	if(estaVazia(atual)) return 0; 
 
-	if(atual->dir == NULL && atual->esq == NULL)
-		return 0;
-	return maior(alturaArvore(atual->esq), alturaArvore(atual->dir));
+	if(atual->dir == NULL && atual->esq == NULL) return 0;
+
+	return maior(alturaArvore(atual->esq), alturaArvore(atual->dir)) + 1;
 }
 
 int profundidadeArvore(No *arvore) {
