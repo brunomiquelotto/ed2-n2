@@ -16,5 +16,6 @@ int main() {
     getGrafoFromFile("filename");
     printGrafo();
     printGrafoInfo();
+
     return 0;
 }
