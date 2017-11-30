@@ -146,3 +146,38 @@ int nivelNo(No *node){
 	if (atual->pai) return nivelNo(atual) + 1;
 	return 1;
 }
+
+int ancestral(No *arvore, int noPesquisa, int achou){
+	
+	if(arvore != NULL && arvore->Id != noPesquisa){
+		if(arvore->Id > noPesquisa)
+		achou = ancestral(arvore->esq, noPesquisa, achou);
+		else
+		achou = ancestral(arvore->dir, noPesquisa, achou);
+	}
+	
+	if(arvore->Id == noPesquisa)
+	return 1;    
+	
+	if(achou)
+	printf("%d ", arvore->Id);
+	
+	return achou; 
+}
+
+
+void descendente(No *arvore, int noPesquisa){
+	
+	if(arvore != NULL && arvore->Id != noPesquisa){
+		if(arvore->Id > noPesquisa)
+		descendente(arvore->esq, noPesquisa);
+		else
+		descendente(arvore->dir, noPesquisa);
+	}
+	
+	if(arvore->Id == noPesquisa){
+		preOrdem(arvore);
+	}
+
+	return;
+}

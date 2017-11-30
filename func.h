@@ -33,6 +33,9 @@ int profundidadeNo(No *node);
 int grauNo(No *node);
 int nivelNo(No *node);
 
+int ancestral(No *arvore, int noPesquisa, int achou);
+void descendente(No *arvore, int noPesquisa);
+
 int maior(int a, int b);
 
 #endif
