@@ -44,7 +44,7 @@ void printTreeInfo(No* arvore) {
     printf("Profundidade arvore: %d\n", profundidadeArvore(arvore));
     //ancestrais dependentes determinado nó
     printf("Ancestrais: %d\n", ancestral(arvore,44,0));
-    printf("Descendentes: %d\n", ancestral(arvore,44));
+    printf("Descendentes: %d\n", descendente(arvore,44));
 
     //grau, altura, profundidade, nivel de um nó
     
