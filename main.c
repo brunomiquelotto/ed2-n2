@@ -9,13 +9,16 @@ int main() {
     //TODO: Alterar
     No* arvore;
     getTreeFromFile("arvore.txt", &arvore);
+
+    printf("[REPRESENTACAO DA ARVORE]\n\n");
+    printf("(");
     printTree(arvore);
-    printf("\n");
+    printf("\n");    
     printTreeInfo(arvore);
 
-    getGrafoFromFile("filename");
-    printGrafo();
-    printGrafoInfo();
+    // getGrafoFromFile("filename");
+    // printGrafo();
+    // printGrafoInfo();
 
     return 0;
 }

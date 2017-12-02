@@ -6,42 +6,39 @@
 void inicializa (No **arvore) {
 	*arvore = NULL;
 }
-
 void inserir (No **arvore, int IdInclusao) {
 	No *novo;   
 	No *atual;                
 	No *pai;    
-
+	
 	novo = (No*) malloc (sizeof(No));
-
+	
 	novo->Id = IdInclusao;
 	novo->pai = NULL;
 	novo->esq = NULL;
 	novo->dir = NULL;
-
+	
 	if (estaVazia(*arvore))
-		*arvore = novo;
+	*arvore = novo;
 	else {        
 		atual = *arvore;
 		while (atual != NULL) {
 			pai = atual;
 			if (IdInclusao < atual->Id)
-				atual = atual->esq;   
+			atual = atual->esq;   
 			else
-				atual = atual->dir;  
+			atual = atual->dir;  
 		} 
 		novo->pai = pai;
 		if (IdInclusao < pai->Id)
-			pai->esq = novo;   
+		pai->esq = novo;   
 		else
-			pai->dir = novo;    
+		pai->dir = novo;    
 	} 
 } 
-
 int estaVazia (No* lista) {
 	return (lista == NULL);
 }
-
 void preOrdem (No *arvore) {
 	if (arvore != NULL) {
 		printf("%d ", arvore->Id); 
@@ -49,7 +46,6 @@ void preOrdem (No *arvore) {
 		preOrdem(arvore->dir);     
 	}
 }
-
 void posOrdem (No *arvore) {
 	if (arvore != NULL) { 
 		posOrdem(arvore->esq);    
@@ -57,7 +53,6 @@ void posOrdem (No *arvore) {
 		printf("%d ", arvore->Id); 
 	}
 }
-
 void emOrdem (No *arvore) {
 	if (arvore != NULL) {
 		emOrdem(arvore->esq);        
@@ -65,34 +60,30 @@ void emOrdem (No *arvore) {
 		emOrdem(arvore->dir);      
 	}
 }
-
 int ehRaiz(No *arvore){
 	No* atual = arvore;
-	if(!estaVazia(atual) && atual->pai == NULL)
-		return atual->Id;
+	if(!estaVazia(atual) && (atual->dir != NULL || atual->esq != NULL))
+	return 1;
 	return 0;
 }
-
 void printRaiz(No *arvore) {
 	if (!ehRaiz(arvore)) return;
 	printf("%d\n", arvore->Id);
 }
-
 void nosRamo (No *arvore){
 	No* atual = arvore;
 	if(estaVazia(atual)) return; 
-
+	
 	if(atual->pai != NULL && (atual->dir != NULL || atual->esq != NULL)){
 		printf("%d ",  atual->Id);		
 	}
 	nosRamo(atual->esq);
 	nosRamo(atual->dir);
 } 
-
 void noFolha (No *arvore){
 	No* atual = arvore;
 	if(estaVazia(atual)) return; 
-
+	
 	if(atual->dir == NULL && atual->esq == NULL){
 		printf("%d ",  atual->Id);		
 	}
@@ -102,20 +93,17 @@ void noFolha (No *arvore){
 int maior(int a, int b) {
 	return a > b ? a : b;
 }
-
 int alturaArvore(No *arvore){
 	No* atual = arvore;
 	if(estaVazia(atual)) return 0; 
-
+	
 	if(atual->dir == NULL && atual->esq == NULL) return 0;
-
+	
 	return maior(alturaArvore(atual->esq), alturaArvore(atual->dir)) + 1;
 }
-
 int profundidadeArvore(No *arvore) {
 	return alturaArvore(arvore);
 }
-
 int grauArvore(No* arvore, int max) {
 	No* atual = arvore;
 	if (max == 2) return max;
@@ -125,48 +113,92 @@ int grauArvore(No* arvore, int max) {
 	if (atual->esq != NULL) return maior(grauArvore(atual->esq, 1), max);
 	return maior(grauArvore(atual->dir, 1), max);
 }
-
-int alturaNo(No *node){
-	return 1;
-}
-
-int profundidadeNo(No *node){
-	return 1;
-}
-
-int grauNo(No *node){
-	No* atual = node;
-	if (atual->esq != NULL && atual->dir != NULL) return 2;
-	if (atual->esq != NULL || atual->dir != NULL) return 1;
-	return 0;
-}
-
-int nivelNo(No *node){
-	No* atual = node;
-	if (atual->pai) return nivelNo(atual) + 1;
-	return 1;
-}
-
-int ancestral(No *arvore, int noPesquisa, int achou){
+int alturaNo(No *arvore, int numero){
+	if(estaVazia(arvore)) return 0;
+	if(!existeNo(arvore,numero)) return 0;
 	
-	if(arvore != NULL && arvore->Id != noPesquisa){
-		if(arvore->Id > noPesquisa)
-		achou = ancestral(arvore->esq, noPesquisa, achou);
+	No *atual = arvore;
+	
+	while(atual != NULL && atual->Id != numero){
+		if(atual->Id > numero)
+		atual = atual->esq;
 		else
-		achou = ancestral(arvore->dir, noPesquisa, achou);
+		atual = atual->dir;
 	}
 	
-	if(arvore->Id == noPesquisa)
-	return 1;    
+	if(atual->Id == numero)
+	return alturaArvore(atual);
 	
-	if(achou)
-	printf("%d ", arvore->Id);
-	
-	return achou; 
+	return 0;
 }
-
-
+int profundidadeNo(No *arvore, int numero){
+	if(estaVazia(arvore)) return 0;
+	if(!existeNo(arvore,numero)) return 0;
+	
+	No *atual = arvore;
+	
+	while(atual != NULL && atual->Id != numero){
+		if(atual->Id > numero)
+		atual = atual->esq;
+		else
+		atual = atual->dir;
+	}
+	
+	if(atual->Id == numero)
+	return profundidadeArvore(atual);
+	
+	return 0;
+	
+}
+int grauNo(No *arvore, int numero){
+	if(estaVazia(arvore)) return 0;
+	if(!existeNo(arvore,numero)) return 0;
+	
+	No *atual = arvore;
+	
+	while(atual != NULL && atual->Id != numero){
+		if(atual->Id > numero)
+		atual = atual->esq;
+		else
+		atual = atual->dir;
+	}
+	
+	if(atual->Id == numero)
+	return grauArvore(atual,0);
+	
+	return 0;
+}
+int nivelNo(No *arvore, int numero){
+	if(estaVazia(arvore)) return 0;
+	if(!existeNo(arvore,numero)) return 0;
+	if(arvore != NULL && arvore->Id > numero) return nivelNo(arvore->esq, numero) + 1;
+	if(arvore != NULL && arvore->Id < numero) return nivelNo(arvore->dir, numero) + 1;
+	if(arvore->Id == numero) return 1;	
+	return 0;
+}
+void ancestral(No *arvore, int noPesquisa){
+	if(estaVazia(arvore)) return;
+	if(!existeNo(arvore,noPesquisa)){ printf("No nao existe"); return;}
+	
+	No *atual = arvore;
+	
+	while(atual != NULL && atual->Id != noPesquisa){
+		if(atual->Id > noPesquisa) atual = atual->esq;
+		if(atual->Id < noPesquisa) atual = atual->dir;		
+	}
+	
+	if(atual->Id == noPesquisa){
+		while(atual->pai != NULL){
+			atual = atual->pai;
+			printf("%d ", atual->Id);
+		}
+	}
+	
+	return;
+}
 void descendente(No *arvore, int noPesquisa){
+	if(estaVazia(arvore)) return;
+	if(!existeNo(arvore,noPesquisa)){ printf("No nao existe"); return;}
 	
 	if(arvore != NULL && arvore->Id != noPesquisa){
 		if(arvore->Id > noPesquisa)
@@ -175,9 +207,17 @@ void descendente(No *arvore, int noPesquisa){
 		descendente(arvore->dir, noPesquisa);
 	}
 	
-	if(arvore->Id == noPesquisa){
+	if(arvore->Id == noPesquisa && (arvore->esq != NULL || arvore->dir != NULL)){
 		preOrdem(arvore);
+	}else{
+		if(arvore->pai == NULL)
+		printf(" Nao tem Descendentes");
 	}
-
 	return;
+}
+int existeNo(No *arvore, int noPesquisa){
+	if(arvore != NULL && arvore->Id > noPesquisa) return existeNo(arvore->esq, noPesquisa);
+	if(arvore != NULL && arvore->Id < noPesquisa) return existeNo(arvore->dir, noPesquisa);
+	if((arvore != NULL) && arvore->Id == noPesquisa) return 1;
+	return 0;
 }

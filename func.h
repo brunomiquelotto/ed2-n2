@@ -28,14 +28,16 @@ int alturaArvore(No *arvore);
 int profundidadeArvore(No *arvore);
 int grauArvore(No *arvore, int max);
 
-int alturaNo(No *node);
-int profundidadeNo(No *node);
-int grauNo(No *node);
-int nivelNo(No *node);
+int alturaNo(No *arvore, int numero);
+int profundidadeNo(No *arvore, int numero);
+int grauNo(No *arvore, int numero);
+int nivelNo(No *arvore, int numero);
 
-int ancestral(No *arvore, int noPesquisa, int achou);
+void ancestral(No *arvore, int noPesquisa);
 void descendente(No *arvore, int noPesquisa);
 
 int maior(int a, int b);
+
+int existeNo(No *arvore, int noPesquisa);
 
 #endif

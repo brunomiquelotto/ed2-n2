@@ -4,13 +4,13 @@
 #ifndef PRINT_H
 #define PRINT_H
 
-void printGrafo() {
-    printf("\nPrinting Grafo to screen..............");
-}
+// void printGrafo() {
+//     printf("\nPrinting Grafo to screen..............");
+// }
 
-void printGrafoInfo() {
-    printf("\nPrinting Grafo info to screen..............");
-}
+// void printGrafoInfo() {
+//     printf("\nPrinting Grafo info to screen..............");
+// }
 
 void printTree(No* arvore) {
     No *atual = arvore;
@@ -26,6 +26,25 @@ void printTree(No* arvore) {
 
 
 void printTreeInfo(No* arvore) {
+    int noAncestral, noDescendente, noGrau, noNivel;
+    printf("\n");
+    printf("======INSERIR NUMEROS PARA PESQUISA===== \n\n");
+    printf("Numero para seus ANCESTRAIS: ");
+    scanf("%d", &noAncestral);
+    printf("\n");
+    printf("Numero para seus DESCENTES: ");
+    scanf("%d",&noDescendente);
+    printf("\n");
+    printf("Numero para seu GRAU: ");
+    scanf("%d",&noGrau);
+    printf("\n");
+    printf("Numero para seu NIVEL: ");
+    scanf("%d",&noNivel);
+    printf("\n\n");
+    
+    printf("======================\n\n");
+    printf("[INFORMACOES DA ARVORE] \n\n");
+   
     printf("No raiz: ");
     printRaiz(arvore);
 
@@ -35,28 +54,32 @@ void printTreeInfo(No* arvore) {
 
     printf("Nos folha: ");
     noFolha(arvore);
-    printf("\n");
+    printf("\n\n");
 
-    printf("Grau arvore: %d\n", grauArvore(arvore,0));
-
+    printf("Grau arvore: %d\n", grauArvore(arvore,0));    
     printf("Altura arvore: %d\n", alturaArvore(arvore));
+    printf("Profundidade arvore: %d\n\n", profundidadeArvore(arvore));
 
-    printf("Profundidade arvore: %d\n", profundidadeArvore(arvore));
-    //ancestrais dependentes determinado nó
-    printf("Ancestrais:");
-    ancestral(arvore,100,0);
-    printf("\n");
-
-    printf("Descendentes: ");
-    descendente(arvore,20);
-    printf("\n");
-
-    //grau, altura, profundidade, nivel de um nó
+    printf("[INFORMACOES DOS NOS]\n\n");    
     
+    printf("Ancestrais do NO[%d]: ", noAncestral);
+    ancestral(arvore,noAncestral);    
+    printf("\n");
+
+    printf("Descendentes do NO[%d]: ", noDescendente);
+    descendente(arvore,noDescendente);
+    printf("\n");
+
+    printf("Grau do NO[%d]: %d\n", noGrau, grauNo(arvore, noGrau));
+
+    printf("Nivel No[%d]: %d\n", noNivel, nivelNo(arvore, noNivel));
+    printf("\n");
+    
+    printf("[ORDENACOES DA ARVORE]\n\n");
     printf("Pre ordem: ");
     preOrdem(arvore);
     printf("\n");
-
+    
     printf("Pos ordem: ");
     posOrdem(arvore);
     printf("\n");
